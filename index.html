@@ -99,9 +99,9 @@
                     </li><!--//facebook-like-->
                     <!--// Generate github buttons: https://github.com/mdo/github-buttons -->
                     <li class="list-inline-item github-star">
-<a class="github-button" href="https://github.com/xriley/devaid-theme" data-icon="octicon-star" aria-label="Star xriley/devaid-theme on GitHub">Star</a></li>
+<a class="github-button" href="https://github.com/erpc-io/eRPC" data-icon="octicon-star" aria-label="Star erpc-io/eRPC on GitHub">Star</a></li>
                     <li class="list-inline-item github-follow"><!-- Place this tag where you want the button to render. -->
-<a class="github-button" href="https://github.com/xriley" aria-label="Follow @xriley on GitHub">Follow @xriley</a></li>
+<a class="github-button" href="https://github.com/erpc-io" aria-label="Follow @erpc-io on GitHub">Follow @erpc-io</a></li>
                 </ul>
             </div>
         </div>
@@ -212,70 +212,73 @@
             <div class="docs-inner">
             <h2 class="title text-center">Get Started</h2>
             <div class="block">
-                <h3 class="sub-title text-center">HTML</h3>
-                <p><a href="http://prismjs.com/" target="_blank">PrismJS</a> is used as the syntax highlighter here.</p>
-                <p>Below are the details of the custom PrismJS build used in this template. You can <a href="http://prismjs.com/download.html" target="_blank">build your own version</a> via their website should you need to.</p>
-                <ul class="list-unstyled">
-                    <li><strong>Compression level:</strong> Minified</li>
-                    <li><strong>Theme:</strong> Okaidia</li>
-                    <li><strong>Languages:</strong> Markup, CSS, C-like, JavaScript, PHP and Python</li>
-                </ul>
+                <h3 class="sub-title text-center">Server</h3>
+                <p>Here's a Hello, world example of how to use eRPC.  We'll start with the server side:</p>
                 <div class="code-block">
                     <!--//Use Prismjs - http://prismjs.com/index.html#basic-usage -->
-                    <pre><code class="language-markup">
-    &ltp class="my-style"&gt
-      Hello World!
-    &lt/p&gt
+                    <pre><code class="language-cpp">
+#include "common.h"
+erpc::Rpc<erpc::CTransport> *rpc;
+
+void req_handler(erpc::ReqHandle *req_handle, void *) {
+  auto &resp = req_handle->pre_resp_msgbuf;
+  rpc->resize_msg_buffer(&resp, kMsgSize);
+  sprintf(reinterpret_cast<char *>(resp.buf), "hello");
+
+  rpc->enqueue_response(req_handle, &resp);
+}
+
+int main() {
+  std::string server_uri = kServerHostname + ":" + std::to_string(kUDPPort);
+  erpc::Nexus nexus(server_uri, 0, 0);
+  nexus.register_req_func(kReqType, req_handler);
+
+  rpc = new erpc::Rpc<erpc::CTransport>(&nexus, nullptr, 0, nullptr);
+  rpc->run_event_loop(100000);
+}
                      </code></pre>
                 </div><!--//code-block-->
             </div><!--//block-->
 
             <div class="block">
-                <h3 class="sub-title text-center">CSS</h3>
-                <p>Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</p>
+                <h3 class="sub-title text-center">Client</h3>
+                <p>Here's the corresponding client code.</p>
 
                 <div class="code-block">
                     <!--//Use Prismjs - http://prismjs.com/index.html#basic-usage -->
-                    <pre>
-    <code class="language-css">
-    /*
-     * Template Name: devAid - Bootstrap 4 theme for developers
-     * Version: 2.0
-     * Author: Xiaoying Riley at 3rd Wave Media
-     * Website: https://themes.3rdwavemedia.com/
-     * Twitter: @3rdwave_themes
-    */
-    body {
-      font-family: 'Lato', arial, sans-serif;
-      color: #444444;
-      font-size: 16px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    </code></pre>
+                    <pre><code class="language-cpp">
+#include "common.h"
+erpc::Rpc<erpc::CTransport> *rpc;
+erpc::MsgBuffer req;
+erpc::MsgBuffer resp;
+
+void cont_func(void *, void *) { printf("%s\n", resp.buf); }
+
+void sm_handler(int, erpc::SmEventType, erpc::SmErrType, void *) {}
+
+int main() {
+  std::string client_uri = kClientHostname + ":" + std::to_string(kUDPPort);
+  erpc::Nexus nexus(client_uri, 0, 0);
+
+  rpc = new erpc::Rpc<erpc::CTransport>(&nexus, nullptr, 0, sm_handler);
+
+  std::string server_uri = kServerHostname + ":" + std::to_string(kUDPPort);
+  int session_num = rpc->create_session(server_uri, 0);
+
+  while (!rpc->is_connected(session_num)) rpc->run_event_loop_once();
+
+  req = rpc->alloc_msg_buffer_or_die(kMsgSize);
+  resp = rpc->alloc_msg_buffer_or_die(kMsgSize);
+
+  rpc->enqueue_request(session_num, kReqType, &req, &resp, cont_func, nullptr);
+  rpc->run_event_loop(100);
+
+  delete rpc;
+}
+                        </code></pre>
                 </div><!--//code-block-->
             </div><!--//block-->
 
-            <div class="block">
-                <h3 class="sub-title text-center">JavaScript</h3>
-                <p>Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit ligula eget dolor.</p>
-                <div class="code-block">
-                    <pre><code class="language-javascript">
-    if( awesome ){
-        console.log('This is Awesome');
-    }else{
-        $('body').addClass('give-me-awesome');
-    }
-                    </code></pre>
-                </div><!--//code-block-->
-            </div><!--//block-->
-            <div class="block">
-                <h3 class="sub-title text-center">Full Documentation</h3>
-                <p>If your documentation is very long you can host the full docs page (including FAQ etc) on GitHub and provide a Call to Action button below to direct users there.</p>
-                <p class="text-center">
-                    <a class="btn btn-cta-primary" href="https://github.com/xriley/devAid-Theme" target="_blank">More on GitHub</a>
-                </p>
-            </div><!--//block-->
 
             </div><!--//docs-inner-->
         </div><!--//container-->
@@ -305,7 +308,6 @@
                     <ul class="social-icons list-inline">
                         <li class="list-inline-item"><a href="https://twitter.com/3rdwave_themes" target="_blank"><i class="fab fa-twitter"></i></a></li>
                         <li class="list-inline-item"><a href="https://www.facebook.com/3rdwavethemes" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-
                         <li class="list-inline-item"><a href="https://medium.com/@3rdwave_themes/" target="_blank"><i class="fab fa-medium-m"></i></a></li>
                         <li class="list-inline-item"><a href="https://dribbble.com/Xiaoying" target="_blank"><i class="fab fa-dribbble"></i></a></li>
                         <li class="list-inline-item last"><a href="https://themes.3rdwavemedia.com/contact/" target="_blank"><i class="fas fa-envelope"></i></a></li>
