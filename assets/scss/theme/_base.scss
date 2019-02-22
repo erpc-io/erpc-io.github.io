@@ -300,11 +300,16 @@ pre code {
         }
     }
     .feature-list {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
         li {
             margin-bottom: 10px;
             color: darken($color, 30%);
             .svg-inline--fa {
-                margin-right: 5px;
+                // margin-right: 5px;
+                margin-left: -2em;
+                width: 2em;
                 color: #fff;
             }
         }
