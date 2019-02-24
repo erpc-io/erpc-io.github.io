@@ -18,7 +18,7 @@
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="assets/plugins/prism/prism.css">
     <!-- Theme CSS -->
-    <link id="theme-style" rel="stylesheet" href="assets/css/theme-erpc.css">
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme-3.css">
     <!-- GitHub Button -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
@@ -72,7 +72,7 @@
     <section id="promo" class="promo section offset-header">
         <div class="container text-center">
             <h2 class="title">eRPC</span></h2>
-            <p class="intro">A fast and general-purpose RPC library for datacenter networks</p>
+            <p class="intro">A fast Remote Procedure Call library for datacenters</p>
             <div class="btns">
                 <a class="btn btn-cta-primary" href="https://github.com/erpc-io/eRPC" target="_blank">Download</a>
                 <a class="btn btn-cta-secondary" href="https://www.usenix.org/conference/nsdi19/presentation/kalia" target="_blank">Paper</a>
@@ -103,23 +103,9 @@
         <div class="container">
             <h2 class="title text-center">What is eRPC?</h2>
             <p class="intro text-justify">
-            It is commonly believed that datacenter networking software must
-            sacrifice generality to attain high performance.  The popularity of specialized
-            distributed systems designed specifically for niche technologies such as
-            RDMA, lossless networks, FPGAs, and programmable switches testifies to this
-            belief. In this paper, we show that such specialization is not necessary.
-            eRPC is a new general-purpose remote procedure call (RPC) library that offers
-            performance comparable to specialized systems, while running on commodity CPUs
-            in traditional datacenter networks based on either lossy Ethernet or lossless
-            fabrics. eRPC performs well in three key metrics: message rate for small
-            messages; bandwidth for large messages; and scalability to a large number of
-            nodes and CPU cores. It handles packet loss, congestion, and background request
-            execution. In microbenchmarks, one CPU core can handle up to 10 million small
-            RPCs per second, or send large messages at 75 Gbps. We port a production-grade
-            implementation of Raft state machine replication to eRPC without modifying
-            the core Raft source code. We achieve 5.5 µs of replication latency on lossy
-            Ethernet, which is faster than or comparable to specialized replication systems
-            that use programmable switches, FPGAs, or RDMA.</p>
+            eRPC is a fast Remote Procedure Call library designed for modern datacenter
+            networks. It runs over both Ethernet and InfiniBand, and performs comparably
+            to RDMA.
         </div><!--//container-->
     </section><!--//about-->
 

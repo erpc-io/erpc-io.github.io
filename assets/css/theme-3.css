@@ -54,8 +54,8 @@ a:hover {
 }
 
 a.btn-cta-primary, .btn-cta-primary {
-  background: #2a435c;
-  border: 1px solid #2a435c;
+  background: #1a334c;
+  border: 1px solid #1a334c;
   color: #fff;
   font-weight: 600;
   text-transform: uppercase;
@@ -82,7 +82,7 @@ a.btn-cta-secondary:hover, .btn-cta-secondary:hover {
 }
 
 .text-highlight {
-  color: #2a435c;
+  color: #1a334c;
 }
 
 .offset-header {
@@ -142,7 +142,7 @@ pre code {
   padding: 8px 8px;
   right: 10px;
   top: 10px;
-  background: #2a435c;
+  background: #1a334c;
 }
 
 .header .main-nav .navbar-toggler:focus {
@@ -179,7 +179,7 @@ pre code {
 }
 
 .header .main-nav .nav .nav-item .nav-link {
-  color: #32506d;
+  color: #1a334c;
   -webkit-transition: none;
   -moz-transition: none;
   -ms-transition: none;
@@ -194,7 +194,7 @@ pre code {
 }
 
 .header .main-nav .nav .nav-item .nav-link:hover {
-  color: #2a435c;
+  color: #1a334c;
   background: none;
 }
 
@@ -221,7 +221,7 @@ pre code {
 
 .promo .title {
   font-size: 98px;
-  color: #2a435c;
+  color: #1a334c;
   margin-top: 0;
 }
 
@@ -257,7 +257,7 @@ pre code {
 }
 
 .promo .meta a:hover {
-  color: #2a435c;
+  color: #1a334c;
 }
 
 .promo .social-media {
@@ -283,7 +283,7 @@ pre code {
 }
 
 .about .title {
-  color: #2a435c;
+  color: #1a334c;
   margin-top: 0;
   margin-bottom: 60px;
 }
@@ -307,7 +307,7 @@ pre code {
 
 .about .item .icon-holder .svg-inline--fa {
   font-size: 24px;
-  color: #2a435c;
+  color: #1a334c;
 }
 
 .about .item .content {
@@ -316,7 +316,7 @@ pre code {
 
 .about .item .content .sub-title {
   margin-top: 0;
-  color: #2a435c;
+  color: #1a334c;
   font-size: 18px;
 }
 
@@ -328,13 +328,13 @@ pre code {
 }
 
 .features .title {
-  color: #2a435c;
+  color: #1a334c;
   margin-top: 0;
   margin-bottom: 30px;
 }
 
 .features a {
-  color: #2a435c;
+  color: #1a334c;
 }
 
 .features a:hover {
@@ -343,7 +343,7 @@ pre code {
 
 .features .feature-list li {
   margin-bottom: 10px;
-  color: #2a435c;
+  color: #1a334c;
 }
 
 .features .feature-list li .svg-inline--fa {
@@ -358,7 +358,7 @@ pre code {
 }
 
 .docs .title {
-  color: #2a435c;
+  color: #1a334c;
   margin-top: 0;
   margin-bottom: 30px;
 }
@@ -406,7 +406,7 @@ pre code {
 .license .title {
   margin-top: 0;
   margin-bottom: 30px;
-  color: #2a435c;
+  color: #1a334c;
 }
 
 .license .license-inner {
@@ -445,7 +445,7 @@ pre code {
 
 .license .cta-container .speech-bubble {
   background: #f2f6f9;
-  color: #2a435c;
+  color: #1a334c;
   padding: 30px;
   margin-bottom: 30px;
   position: relative;
@@ -498,7 +498,7 @@ pre code {
 }
 
 .contact .title {
-  color: #2a435c;
+  color: #1a334c;
   margin-top: 0;
   margin-bottom: 30px;
 }
@@ -508,7 +508,7 @@ pre code {
 }
 
 .contact a {
-  color: #2a435c;
+  color: #1a334c;
 }
 
 .contact a:hover {
@@ -542,7 +542,7 @@ pre code {
 .contact .author-message .speech-bubble {
   margin-left: 155px;
   background: #5c88b4;
-  color: #2a435c;
+  color: #1a334c;
   padding: 30px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -556,7 +556,7 @@ pre code {
 }
 
 .contact .author-message .speech-bubble .sub-title {
-  color: #2a435c;
+  color: #1a334c;
   font-size: 16px;
   margin-top: 0;
   margin-bottom: 30px;
@@ -584,7 +584,7 @@ pre code {
 }
 
 .contact .author-message .speech-bubble .source a {
-  color: #2a435c;
+  color: #1a334c;
 }
 
 .contact .author-message .speech-bubble .source .title {
