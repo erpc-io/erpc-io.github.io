@@ -342,6 +342,8 @@ pre code {
 }
 
 .features .feature-list li {
+  max-width: 800px;
+  margin: 0 auto;
   margin-bottom: 10px;
   color: #1a334c;
 }

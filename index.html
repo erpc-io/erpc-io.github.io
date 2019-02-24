@@ -25,18 +25,6 @@
 
 <body data-spy="scroll">
 
-
-
-    <!---//Facebook button code-->
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-
     <!-- ******HEADER****** -->
     <header id="header" class="header">
         <div class="container">
@@ -72,17 +60,14 @@
     <section id="promo" class="promo section offset-header">
         <div class="container text-center">
             <h2 class="title">eRPC</span></h2>
-            <p class="intro">A fast Remote Procedure Call library for datacenters</p>
+            <p class="intro">A fast remote procedure call library for datacenters</p>
             <div class="btns">
                 <a class="btn btn-cta-primary" href="https://github.com/erpc-io/eRPC" target="_blank">Download</a>
                 <a class="btn btn-cta-secondary" href="https://www.usenix.org/conference/nsdi19/presentation/kalia" target="_blank">Paper</a>
                 <a class="btn btn-cta-secondary" href="https://www.cs.cmu.edu/~akalia/erpc_doc/" target="_blank">Documentation</a>
             </div>
             <ul class="meta list-inline">
-            <!--
-                <li class="list-inline-item"><a href="https://github.com/erpc-io/eRPC" target="_blank">View on GitHub</a></li>
-                <li class="list-inline-item"><a href="http://www.cs.cmu.edu/~akalia/erpc_doc/" target="_blank">Full Documentation</a></li>
-            -->
+
             </ul><!--//meta-->
         </div><!--//container-->
         <div class="social-media">
@@ -114,14 +99,14 @@
         <div class="container text-center">
             <h2 class="title">Features</h2>
             <ul class="feature-list list-unstyled text-left">
-                <li><i class="fas fa-check"></i><b>Multiple supported networks</b>: Ethernet, InfiniBand, and RoCE</li>
+                <li><i class="fas fa-check"></i><b>Multiple supported networks</b>: Ethernet and InfiniBand</li>
                 <li><i class="fas fa-check"></i><b>Low latency</b>: 2.3 microseconds round-trip RPC latency with UDP over Ethernet</li>
-                <li><i class="fas fa-check"></i><b>High performance</b> for small 32-byte RPCs: ~10M RPCs/sec with one CPU core, 60--80M RPCs/sec with one NIC.</li>
+                <li><i class="fas fa-check"></i><b>High performance</b> for small 32-byte RPCs: ~10M RPCs/sec with one CPU core, 60--80M RPCs/sec with one NIC</li>
                 <li><i class="fas fa-check"></i><b>High bandwidth</b> for large RPC: 75 Gbps on one connection (one CPU core at server and client) for 8 MB RPCs</li>
-                <li><i class="fas fa-check"></i><b>Scalability</b>: 20000 RPC sessions per server</li>
+                <li><i class="fas fa-check"></i><b>High scalability</b>: 20000 RPC sessions per server</li>
                 <li><i class="fas fa-check"></i><b>End-to-end congestion control</b> that tolerates 100-way incasts</li>
                 <li><i class="fas fa-check"></i><b>Nested RPCs</b>, and long-running <b>background RPCs</b></li>
-                <li><i class="fas fa-check"></i><b>A port of Raft as an example.</b> Our 3-way replication latency is 5.3 microseconds with traditional UDP over Ethernet.</li>
+                <li><i class="fas fa-check"></i><b>A port of Raft as an example</b> with 3-way replication in 5.3 microseconds with UDP over Ethernet.</li>
             </ul>
         </div><!--//container-->
     </section><!--//features-->
