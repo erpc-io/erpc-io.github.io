@@ -123,16 +123,16 @@
                     <!--//Use Prismjs - http://prismjs.com/index.html#basic-usage -->
                     <pre><code class="language-cpp">
 
-#include <stdio.h>
+#include &lt;stdio.h&gt;
 #include "rpc.h"
 
-erpc::Rpc<erpc::CTransport> *rpc;
+erpc::Rpc&lt;erpc::CTransport&gt; *rpc;
 
 void req_handler(erpc::ReqHandle *req_handle, void *) {
-  printf("%s\n", reinterpret_cast<char *>(req_handle->get_req_msgbuf()->buf));
+  printf("%s\n", reinterpret_cast&lt;char *&gt;(req_handle->get_req_msgbuf()->buf));
   auto &resp = req_handle->pre_resp_msgbuf;
   rpc->resize_msg_buffer(&resp, strlen("world"));
-  sprintf(reinterpret_cast<char *>(resp.buf), "world");
+  sprintf(reinterpret_cast&lt;char *&gt;(resp.buf), "world");
 
   rpc->enqueue_response(req_handle, &resp);
 }
@@ -142,7 +142,7 @@ int main() {
   erpc::Nexus nexus(server_uri, 0, 0);
   nexus.register_req_func(17 /* request type */, req_handler);
 
-  rpc = new erpc::Rpc<erpc::CTransport>(&nexus, nullptr, 0, nullptr);
+  rpc = new erpc::Rpc&lt;erpc::CTransport&gt;(&nexus, nullptr, 0, nullptr);
   rpc->run_event_loop(10000 /* 10 seconds */);
 }
 
@@ -158,10 +158,10 @@ int main() {
                     <!--//Use Prismjs - http://prismjs.com/index.html#basic-usage -->
                     <pre><code class="language-cpp">
 
-#include <stdio.h>
+#include &lt;stdio.h&gt;
 #include "rpc.h"
 
-erpc::Rpc<erpc::CTransport> *rpc;
+erpc::Rpc&lt;erpc::CTransport&gt; *rpc;
 erpc::MsgBuffer req;
 erpc::MsgBuffer resp;
 
@@ -173,14 +173,13 @@ int main() {
   std::string client_uri = "fawn-pluto1:31850";
   erpc::Nexus nexus(client_uri, 0, 0);
 
-  rpc = new erpc::Rpc<erpc::CTransport>(&nexus, nullptr, 0, sm_handler);
-
+  rpc = new erpc::Rpc&lt;erpc::CTransport&gt;(&nexus, nullptr, 0, sm_handler);
   int session_num = rpc->create_session("fawn-pluto0:31850", 0);
 
   while (!rpc->is_connected(session_num)) rpc->run_event_loop_once();
 
   req = rpc->alloc_msg_buffer_or_die(strlen("hello"));
-  sprintf(reinterpret_cast<char *>(req.buf), "%s", "hello");
+  sprintf(reinterpret_cast&lt;char *&gt;(req.buf), "%s", "hello");
   resp = rpc->alloc_msg_buffer_or_die(strlen("world"));
 
   rpc->enqueue_request(session_num, 17, &req, &resp, cont_func, nullptr);
