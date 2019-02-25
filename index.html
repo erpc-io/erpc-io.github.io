@@ -122,26 +122,31 @@
                 <div class="code-block">
                     <!--//Use Prismjs - http://prismjs.com/index.html#basic-usage -->
                     <pre><code class="language-cpp">
-#include "common.h"
+
+#include <stdio.h>
+#include "rpc.h"
+
 erpc::Rpc<erpc::CTransport> *rpc;
 
 void req_handler(erpc::ReqHandle *req_handle, void *) {
+  printf("%s\n", reinterpret_cast<char *>(req_handle->get_req_msgbuf()->buf));
   auto &resp = req_handle->pre_resp_msgbuf;
-  rpc->resize_msg_buffer(&resp, kMsgSize);
-  sprintf(reinterpret_cast<char *>(resp.buf), "hello");
+  rpc->resize_msg_buffer(&resp, strlen("world"));
+  sprintf(reinterpret_cast<char *>(resp.buf), "world");
 
   rpc->enqueue_response(req_handle, &resp);
 }
 
 int main() {
-  std::string server_uri = kServerHostname + ":" + std::to_string(kUDPPort);
+  std::string server_uri = "fawn-pluto0:31850";
   erpc::Nexus nexus(server_uri, 0, 0);
-  nexus.register_req_func(kReqType, req_handler);
+  nexus.register_req_func(17 /* request type */, req_handler);
 
   rpc = new erpc::Rpc<erpc::CTransport>(&nexus, nullptr, 0, nullptr);
-  rpc->run_event_loop(100000);
+  rpc->run_event_loop(10000 /* 10 seconds */);
 }
-                     </code></pre>
+
+                    </code></pre>
                 </div><!--//code-block-->
             </div><!--//block-->
 
@@ -152,7 +157,10 @@ int main() {
                 <div class="code-block">
                     <!--//Use Prismjs - http://prismjs.com/index.html#basic-usage -->
                     <pre><code class="language-cpp">
-#include "common.h"
+
+#include <stdio.h>
+#include "rpc.h"
+
 erpc::Rpc<erpc::CTransport> *rpc;
 erpc::MsgBuffer req;
 erpc::MsgBuffer resp;
@@ -162,25 +170,26 @@ void cont_func(void *, void *) { printf("%s\n", resp.buf); }
 void sm_handler(int, erpc::SmEventType, erpc::SmErrType, void *) {}
 
 int main() {
-  std::string client_uri = kClientHostname + ":" + std::to_string(kUDPPort);
+  std::string client_uri = "fawn-pluto1:31850";
   erpc::Nexus nexus(client_uri, 0, 0);
 
   rpc = new erpc::Rpc<erpc::CTransport>(&nexus, nullptr, 0, sm_handler);
 
-  std::string server_uri = kServerHostname + ":" + std::to_string(kUDPPort);
-  int session_num = rpc->create_session(server_uri, 0);
+  int session_num = rpc->create_session("fawn-pluto0:31850", 0);
 
   while (!rpc->is_connected(session_num)) rpc->run_event_loop_once();
 
-  req = rpc->alloc_msg_buffer_or_die(kMsgSize);
-  resp = rpc->alloc_msg_buffer_or_die(kMsgSize);
+  req = rpc->alloc_msg_buffer_or_die(strlen("hello"));
+  sprintf(reinterpret_cast<char *>(req.buf), "%s", "hello");
+  resp = rpc->alloc_msg_buffer_or_die(strlen("world"));
 
-  rpc->enqueue_request(session_num, kReqType, &req, &resp, cont_func, nullptr);
-  rpc->run_event_loop(100);
+  rpc->enqueue_request(session_num, 17, &req, &resp, cont_func, nullptr);
+  rpc->run_event_loop(1000 /* 1 second */);
 
   delete rpc;
 }
-                        </code></pre>
+
+                    </code></pre>
                 </div><!--//code-block-->
             </div><!--//block-->
 
