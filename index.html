@@ -116,9 +116,20 @@
         <div class="container">
             <div class="docs-inner">
             <h2 class="title text-center">Get Started</h2>
+
+            <p>
+              Here's a hello, world example of how to use eRPC. The server
+              and client run on separate machines, named fawn-pluto0 and
+              fawn-pluto1, respectively. The client sends an RPC to the
+              server containing the text "hello", and the server replies
+              with "world".
+
+              You can <a href="https://github.com/erpc-io/eRPC/tree/master/hello_world">
+              browse</a> the example in the eRPC repository.
+            </p>
+
             <div class="block">
                 <h3 class="sub-title text-center">Server</h3>
-                <p>Here's a Hello, world example of how to use eRPC.  We'll start with the server side:</p>
                 <div class="code-block">
                     <!--//Use Prismjs - http://prismjs.com/index.html#basic-usage -->
                     <pre><code class="language-cpp">
@@ -152,7 +163,6 @@ int main() {
 
             <div class="block">
                 <h3 class="sub-title text-center">Client</h3>
-                <p>Here's the corresponding client code.</p>
 
                 <div class="code-block">
                     <!--//Use Prismjs - http://prismjs.com/index.html#basic-usage -->
@@ -170,8 +180,7 @@ void cont_func(void *, void *) { printf("%s\n", resp.buf); }
 void sm_handler(int, erpc::SmEventType, erpc::SmErrType, void *) {}
 
 int main() {
-  std::string client_uri = "fawn-pluto1:31850";
-  erpc::Nexus nexus(client_uri, 0, 0);
+  erpc::Nexus nexus("fawn-pluto1:31850", 0, 0);
 
   rpc = new erpc::Rpc&lt;erpc::CTransport&gt;(&nexus, nullptr, 0, sm_handler);
   int session_num = rpc->create_session("fawn-pluto0:31850", 0);
