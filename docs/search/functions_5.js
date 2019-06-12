@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['get_5favg_5frx_5fbatch',['get_avg_rx_batch',['../classerpc_1_1Rpc.html#a6a2c9b1fee1a6e04612daf38450d7ece',1,'erpc::Rpc']]],
+  ['get_5favg_5ftx_5fbatch',['get_avg_tx_batch',['../classerpc_1_1Rpc.html#aecfa3c973ce3445c07a1bfac744433c0',1,'erpc::Rpc']]],
+  ['get_5fbandwidth',['get_bandwidth',['../classerpc_1_1Rpc.html#ab8d52102335a428a2a597390c61ad627',1,'erpc::Rpc']]],
+  ['get_5fdata_5fsize',['get_data_size',['../classerpc_1_1MsgBuffer.html#a00bd371367c5e69490ace891bcd8bd54',1,'erpc::MsgBuffer']]],
+  ['get_5fetid',['get_etid',['../classerpc_1_1Rpc.html#af705b58c0c10fbe3bd7e3000a2d82a79',1,'erpc::Rpc']]],
+  ['get_5ffreq_5fghz',['get_freq_ghz',['../classerpc_1_1Rpc.html#adf9c6188ce7c2c1812f7056694a94164',1,'erpc::Rpc']]],
+  ['get_5fhuge_5falloc',['get_huge_alloc',['../classerpc_1_1Rpc.html#a127ef347a5c6e1efde00a98f33e51acb',1,'erpc::Rpc']]],
+  ['get_5fmax_5fdata_5fper_5fpkt',['get_max_data_per_pkt',['../classerpc_1_1Rpc.html#ab95384c7cbafcfedf532227717d19b02',1,'erpc::Rpc']]],
+  ['get_5fmax_5fmsg_5fsize',['get_max_msg_size',['../classerpc_1_1Rpc.html#a379b5cfa5d20af4b0d0fd1589862f9be',1,'erpc::Rpc']]],
+  ['get_5fmax_5fnum_5fsessions',['get_max_num_sessions',['../classerpc_1_1Rpc.html#a000c61cc3adb015cf17b2e3f862726f8',1,'erpc::Rpc']]],
+  ['get_5fnum_5fre_5ftx',['get_num_re_tx',['../classerpc_1_1Rpc.html#af132359098f294636ea4c9235078a494',1,'erpc::Rpc']]],
+  ['get_5fremote_5fhostname',['get_remote_hostname',['../classerpc_1_1Rpc.html#a093c90bcda2143352e77b3481989828a',1,'erpc::Rpc']]],
+  ['get_5freq_5ftype',['get_req_type',['../classerpc_1_1MsgBuffer.html#a2935cb090c9f3c8003e4b48519afd5bf',1,'erpc::MsgBuffer']]],
+  ['get_5frpc_5fid',['get_rpc_id',['../classerpc_1_1Rpc.html#a24abbcf2416e6e1acf91142757c44460',1,'erpc::Rpc']]],
+  ['get_5fstat_5fuser_5falloc_5ftot',['get_stat_user_alloc_tot',['../classerpc_1_1Rpc.html#a854b7f1e3b410a8bf9db5c3f4ff735d9',1,'erpc::Rpc']]],
+  ['get_5ftimely',['get_timely',['../classerpc_1_1Rpc.html#a1750c34c1af61f0943cc047fc14b43f7',1,'erpc::Rpc']]],
+  ['get_5fwheel',['get_wheel',['../classerpc_1_1Rpc.html#a8313c94b0c5924ec4af8bbdf0ddc6846',1,'erpc::Rpc']]]
+];
