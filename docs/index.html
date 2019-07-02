@@ -78,7 +78,7 @@ $(function() {
 </li>
 <li>For an RPC client thread:<ul>
 <li>Create an <a class="el" href="classerpc_1_1Rpc.html" title="An Rpc object is the main communication end point in eRPC. Applications use it to create sessions wit...">Rpc</a> endpoint using the <a class="el" href="classerpc_1_1Nexus.html" title="A per-process library object used for initializing eRPC.">Nexus</a></li>
-<li>Connect to remote endpoints with <a class="el" href="classerpc_1_1Rpc.html#a8417f74c49b312695ac6bf5307df7943" title="Create a session to a remote Rpc object and initiate session connection. A session management callbac...">Rpc::create_session</a></li>
+<li>Connect to remote endpoints with <a class="el" href="classerpc_1_1Rpc.html#a8417f74c49b312695ac6bf5307df7943" title="Create a session to a remote Rpc object and initiate session connection. A session management callbac...">Rpc::create_session</a>, specifying the server's "control network" hostname. The connection handshake is done over the kernel's network stack.</li>
 <li>Create buffers to store request and response messages with <a class="el" href="classerpc_1_1Rpc.html#a391b3358861f5e26df6e2dd0cbe42bb6" title="Create a hugepage-backed buffer for storing request or response messages.">Rpc::alloc_msg_buffer</a></li>
 <li>Send a request with <a class="el" href="classerpc_1_1Rpc.html#a44c507035ed2be98a21022d8466d6229" title="Enqueue a request for transmission. This always succeeds. eRPC owns msg_buffer until it invokes the c...">Rpc::enqueue_request</a>, specifying a continuation callback</li>
 <li>Run eRPC's event loop with <a class="el" href="classerpc_1_1Rpc.html#a7c15e4b8c227c6b5109d56558947e484" title="Run the event loop for some milliseconds.">Rpc::run_event_loop</a></li>
