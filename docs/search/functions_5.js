@@ -12,7 +12,6 @@ var searchData=
   ['get_5fmax_5fnum_5fsessions',['get_max_num_sessions',['../classerpc_1_1Rpc.html#a000c61cc3adb015cf17b2e3f862726f8',1,'erpc::Rpc']]],
   ['get_5fnum_5fre_5ftx',['get_num_re_tx',['../classerpc_1_1Rpc.html#af132359098f294636ea4c9235078a494',1,'erpc::Rpc']]],
   ['get_5fremote_5fhostname',['get_remote_hostname',['../classerpc_1_1Rpc.html#a093c90bcda2143352e77b3481989828a',1,'erpc::Rpc']]],
-  ['get_5freq_5ftype',['get_req_type',['../classerpc_1_1MsgBuffer.html#a2935cb090c9f3c8003e4b48519afd5bf',1,'erpc::MsgBuffer']]],
   ['get_5frpc_5fid',['get_rpc_id',['../classerpc_1_1Rpc.html#a24abbcf2416e6e1acf91142757c44460',1,'erpc::Rpc']]],
   ['get_5fstat_5fuser_5falloc_5ftot',['get_stat_user_alloc_tot',['../classerpc_1_1Rpc.html#a854b7f1e3b410a8bf9db5c3f4ff735d9',1,'erpc::Rpc']]],
   ['get_5ftimely',['get_timely',['../classerpc_1_1Rpc.html#a1750c34c1af61f0943cc047fc14b43f7',1,'erpc::Rpc']]],

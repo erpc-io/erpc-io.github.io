@@ -91,11 +91,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a88439d20fe2025f38631ae262fabe3e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classerpc_1_1Rpc.html" title="An Rpc object is the main communication end point in eRPC. Applications use it to create sessions wit...">Rpc</a> from a foreground thread. <br /></td></tr>
 <tr class="separator:a88439d20fe2025f38631ae262fabe3e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a391b3358861f5e26df6e2dd0cbe42bb6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classerpc_1_1MsgBuffer.html">MsgBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a391b3358861f5e26df6e2dd0cbe42bb6">alloc_msg_buffer</a> (size_t max_data_size)</td></tr>
-<tr class="memdesc:a391b3358861f5e26df6e2dd0cbe42bb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a hugepage-backed buffer for storing request or response messages.  <a href="#a391b3358861f5e26df6e2dd0cbe42bb6">More...</a><br /></td></tr>
+<tr class="memdesc:a391b3358861f5e26df6e2dd0cbe42bb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a hugepage-backed buffer for storing request or response messages. Safe to call from background threads (TS).  <a href="#a391b3358861f5e26df6e2dd0cbe42bb6">More...</a><br /></td></tr>
 <tr class="separator:a391b3358861f5e26df6e2dd0cbe42bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad07c5907fdc38d19c5e4d99089d18b58"><td class="memItemLeft" align="right" valign="top"><a id="ad07c5907fdc38d19c5e4d99089d18b58"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#ad07c5907fdc38d19c5e4d99089d18b58">free_msg_buffer</a> (<a class="el" href="classerpc_1_1MsgBuffer.html">MsgBuffer</a> msg_buffer)</td></tr>
-<tr class="memdesc:ad07c5907fdc38d19c5e4d99089d18b58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free a <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a> created by <a class="el" href="classerpc_1_1Rpc.html#a391b3358861f5e26df6e2dd0cbe42bb6" title="Create a hugepage-backed buffer for storing request or response messages.">alloc_msg_buffer()</a> <br /></td></tr>
+<tr class="memitem:ad07c5907fdc38d19c5e4d99089d18b58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#ad07c5907fdc38d19c5e4d99089d18b58">free_msg_buffer</a> (<a class="el" href="classerpc_1_1MsgBuffer.html">MsgBuffer</a> msg_buffer)</td></tr>
 <tr class="separator:ad07c5907fdc38d19c5e4d99089d18b58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8417f74c49b312695ac6bf5307df7943"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a8417f74c49b312695ac6bf5307df7943">create_session</a> (std::string remote_uri, uint8_t rem_rpc_id)</td></tr>
 <tr class="memdesc:a8417f74c49b312695ac6bf5307df7943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a session to a remote <a class="el" href="classerpc_1_1Rpc.html" title="An Rpc object is the main communication end point in eRPC. Applications use it to create sessions wit...">Rpc</a> object and initiate session connection. A session management callback of type <code>kConnected</code> or <code>kConnectFailed</code> will be invoked if this call is successful.  <a href="#a8417f74c49b312695ac6bf5307df7943">More...</a><br /></td></tr>
@@ -104,10 +102,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a71925e444cb9ff423f68a63c71175d71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disconnect and destroy a session. The application must not use this session number after this function is called.  <a href="#a71925e444cb9ff423f68a63c71175d71">More...</a><br /></td></tr>
 <tr class="separator:a71925e444cb9ff423f68a63c71175d71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44c507035ed2be98a21022d8466d6229"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a44c507035ed2be98a21022d8466d6229">enqueue_request</a> (int session_num, uint8_t req_type, <a class="el" href="classerpc_1_1MsgBuffer.html">MsgBuffer</a> *req_msgbuf, <a class="el" href="classerpc_1_1MsgBuffer.html">MsgBuffer</a> *resp_msgbuf, <a class="el" href="classerpc_1_1Rpc.html#a462be99bcda87d2d583a84a6a92565e8">erpc_cont_func_t</a> cont_func, void *tag, size_t cont_etid=kInvalidBgETid)</td></tr>
-<tr class="memdesc:a44c507035ed2be98a21022d8466d6229"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueue a request for transmission. This always succeeds. eRPC owns <code>msg_buffer</code> until it invokes the continuation callback.  <a href="#a44c507035ed2be98a21022d8466d6229">More...</a><br /></td></tr>
+<tr class="memdesc:a44c507035ed2be98a21022d8466d6229"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueue a request for transmission. This always succeeds. eRPC owns <code>msg_buffer</code> until it invokes the continuation callback. This function is safe to call from background threads (TS).  <a href="#a44c507035ed2be98a21022d8466d6229">More...</a><br /></td></tr>
 <tr class="separator:a44c507035ed2be98a21022d8466d6229"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8932e69d2b10653e70b5cb06785efb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#ac8932e69d2b10653e70b5cb06785efb1">enqueue_response</a> (ReqHandle *req_handle, <a class="el" href="classerpc_1_1MsgBuffer.html">MsgBuffer</a> *resp_msgbuf)</td></tr>
-<tr class="memdesc:ac8932e69d2b10653e70b5cb06785efb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueue a response for transmission at the server. See ReqHandle for details about creating the response. On calling this, the application loses ownership of the request and response <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a>.  <a href="#ac8932e69d2b10653e70b5cb06785efb1">More...</a><br /></td></tr>
+<tr class="memdesc:ac8932e69d2b10653e70b5cb06785efb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueue a response for transmission at the server. See ReqHandle for details about creating the response. On calling this, the application loses ownership of the request and response <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a>. This function is safe to call from background threads (TS).  <a href="#ac8932e69d2b10653e70b5cb06785efb1">More...</a><br /></td></tr>
 <tr class="separator:ac8932e69d2b10653e70b5cb06785efb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c15e4b8c227c6b5109d56558947e484"><td class="memItemLeft" align="right" valign="top"><a id="a7c15e4b8c227c6b5109d56558947e484"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a7c15e4b8c227c6b5109d56558947e484">run_event_loop</a> (size_t timeout_ms)</td></tr>
@@ -119,7 +117,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:a9f1a36500cd81962e22d7b243a157aaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5e13737600feff6a35daf9992e5ceb3"><td class="memItemLeft" align="right" valign="top"><a id="aa5e13737600feff6a35daf9992e5ceb3"></a>
 <a class="el" href="classerpc_1_1MsgBuffer.html">MsgBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#aa5e13737600feff6a35daf9992e5ceb3">alloc_msg_buffer_or_die</a> (size_t max_data_size)</td></tr>
-<tr class="memdesc:aa5e13737600feff6a35daf9992e5ceb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identical to <a class="el" href="classerpc_1_1Rpc.html#a391b3358861f5e26df6e2dd0cbe42bb6" title="Create a hugepage-backed buffer for storing request or response messages.">alloc_msg_buffer()</a>, but throws an exception on failure. <br /></td></tr>
+<tr class="memdesc:aa5e13737600feff6a35daf9992e5ceb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identical to <a class="el" href="classerpc_1_1Rpc.html#a391b3358861f5e26df6e2dd0cbe42bb6" title="Create a hugepage-backed buffer for storing request or response messages. Safe to call from backgroun...">alloc_msg_buffer()</a>, but throws an exception on failure. <br /></td></tr>
 <tr class="separator:aa5e13737600feff6a35daf9992e5ceb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88fa4a46f9a7ebc5a5454658205f9fad"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a88fa4a46f9a7ebc5a5454658205f9fad">num_active_sessions</a> ()</td></tr>
 <tr class="separator:a88fa4a46f9a7ebc5a5454658205f9fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,9 +147,7 @@ Timely *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 TimingWheel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a8313c94b0c5924ec4af8bbdf0ddc6846">get_wheel</a> ()</td></tr>
 <tr class="memdesc:a8313c94b0c5924ec4af8bbdf0ddc6846"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the Timing Wheel for this <a class="el" href="classerpc_1_1Rpc.html" title="An Rpc object is the main communication end point in eRPC. Applications use it to create sessions wit...">Rpc</a>. Expert use only. <br /></td></tr>
 <tr class="separator:a8313c94b0c5924ec4af8bbdf0ddc6846"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a51d1f19de5bc3ed9d11404aad5f7d9"><td class="memItemLeft" align="right" valign="top"><a id="a8a51d1f19de5bc3ed9d11404aad5f7d9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a8a51d1f19de5bc3ed9d11404aad5f7d9">set_context</a> (void *_context)</td></tr>
-<tr class="memdesc:a8a51d1f19de5bc3ed9d11404aad5f7d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set this <a class="el" href="classerpc_1_1Rpc.html" title="An Rpc object is the main communication end point in eRPC. Applications use it to create sessions wit...">Rpc</a>'s context. <br /></td></tr>
+<tr class="memitem:a8a51d1f19de5bc3ed9d11404aad5f7d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a8a51d1f19de5bc3ed9d11404aad5f7d9">set_context</a> (void *_context)</td></tr>
 <tr class="separator:a8a51d1f19de5bc3ed9d11404aad5f7d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1329fd8371f51a09ab92df71951d75c"><td class="memItemLeft" align="right" valign="top"><a id="ac1329fd8371f51a09ab92df71951d75c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#ac1329fd8371f51a09ab92df71951d75c">set_pre_resp_msgbuf_size</a> (size_t new_pre_resp_msgbuf_size)</td></tr>
@@ -207,7 +203,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a0c99d68d7db5969e7fa374a63d35fb92"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a0c99d68d7db5969e7fa374a63d35fb92">resize_msg_buffer</a> (<a class="el" href="classerpc_1_1MsgBuffer.html">MsgBuffer</a> *msg_buffer, size_t new_data_size)</td></tr>
-<tr class="memdesc:a0c99d68d7db5969e7fa374a63d35fb92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resize a <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a> to fit a request or response.  <a href="#a0c99d68d7db5969e7fa374a63d35fb92">More...</a><br /></td></tr>
+<tr class="memdesc:a0c99d68d7db5969e7fa374a63d35fb92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resize a <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a> to fit a request or response. Safe to call from background threads (TS).  <a href="#a0c99d68d7db5969e7fa374a63d35fb92">More...</a><br /></td></tr>
 <tr class="separator:a0c99d68d7db5969e7fa374a63d35fb92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab95384c7cbafcfedf532227717d19b02"><td class="memItemLeft" align="right" valign="top"><a id="ab95384c7cbafcfedf532227717d19b02"></a>
 static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#ab95384c7cbafcfedf532227717d19b02">get_max_data_per_pkt</a> ()</td></tr>
@@ -376,10 +372,10 @@ template&lt;class TTr &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Create a hugepage-backed buffer for storing request or response messages. </p>
+<p>Create a hugepage-backed buffer for storing request or response messages. Safe to call from background threads (TS). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">max_data_size</td><td>If this call is successful, the returned <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a> contains space for this many application data bytes. The <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a> should be resized with <a class="el" href="classerpc_1_1Rpc.html#a0c99d68d7db5969e7fa374a63d35fb92" title="Resize a MsgBuffer to fit a request or response.">resize_msg_buffer()</a> when used for smaller requests or responses.</td></tr>
+    <tr><td class="paramname">max_data_size</td><td>If this call is successful, the returned <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a> contains space for this many application data bytes. The <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a> should be resized with <a class="el" href="classerpc_1_1Rpc.html#a0c99d68d7db5969e7fa374a63d35fb92" title="Resize a MsgBuffer to fit a request or response. Safe to call from background threads (TS).">resize_msg_buffer()</a> when used for smaller requests or responses.</td></tr>
   </table>
   </dd>
 </dl>
@@ -537,7 +533,7 @@ template&lt;class TTr &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Enqueue a request for transmission. This always succeeds. eRPC owns <code>msg_buffer</code> until it invokes the continuation callback. </p>
+<p>Enqueue a request for transmission. This always succeeds. eRPC owns <code>msg_buffer</code> until it invokes the continuation callback. This function is safe to call from background threads (TS). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">session_num</td><td>The session number to send the request on. This session must be connected.</td></tr>
@@ -581,7 +577,7 @@ template&lt;class TTr &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Enqueue a response for transmission at the server. See ReqHandle for details about creating the response. On calling this, the application loses ownership of the request and response <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a>. </p>
+<p>Enqueue a response for transmission at the server. See ReqHandle for details about creating the response. On calling this, the application loses ownership of the request and response <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a>. This function is safe to call from background threads (TS). </p>
 <p class="">This can be called outside the request handler.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -646,6 +642,35 @@ template&lt;class TTr &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ad07c5907fdc38d19c5e4d99089d18b58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad07c5907fdc38d19c5e4d99089d18b58">&#9670;&nbsp;</a></span>free_msg_buffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class TTr &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classerpc_1_1Rpc.html">erpc::Rpc</a>&lt; TTr &gt;::free_msg_buffer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classerpc_1_1MsgBuffer.html">MsgBuffer</a>&#160;</td>
+          <td class="paramname"><em>msg_buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p class="">Free a <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a> created by <a class="el" href="classerpc_1_1Rpc.html#a391b3358861f5e26df6e2dd0cbe42bb6" title="Create a hugepage-backed buffer for storing request or response messages. Safe to call from backgroun...">alloc_msg_buffer()</a>. Safe to call from background threads (TS). </p>
 
 </div>
 </div>
@@ -742,15 +767,44 @@ template&lt;class TTr &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Resize a <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a> to fit a request or response. </p>
+<p>Resize a <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a> to fit a request or response. Safe to call from background threads (TS). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg_buffer</td><td>The <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a> to resize</td></tr>
-    <tr><td class="paramname">new_data_size</td><td>The new size in bytes of the application data that this <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a> should contain. This must be smaller than the size used to create the <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a> in <a class="el" href="classerpc_1_1Rpc.html#a391b3358861f5e26df6e2dd0cbe42bb6" title="Create a hugepage-backed buffer for storing request or response messages.">alloc_msg_buffer()</a>.</td></tr>
+    <tr><td class="paramname">new_data_size</td><td>The new size in bytes of the application data that this <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a> should contain. This must be smaller than the size used to create the <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a> in <a class="el" href="classerpc_1_1Rpc.html#a391b3358861f5e26df6e2dd0cbe42bb6" title="Create a hugepage-backed buffer for storing request or response messages. Safe to call from backgroun...">alloc_msg_buffer()</a>.</td></tr>
   </table>
   </dd>
 </dl>
 <p><code>note</code> This does not modify the <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers....">MsgBuffer</a>'s packet headers </p>
+
+</div>
+</div>
+<a id="a8a51d1f19de5bc3ed9d11404aad5f7d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a51d1f19de5bc3ed9d11404aad5f7d9">&#9670;&nbsp;</a></span>set_context()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class TTr &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classerpc_1_1Rpc.html">erpc::Rpc</a>&lt; TTr &gt;::set_context </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>_context</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p class="">Set this <a class="el" href="classerpc_1_1Rpc.html" title="An Rpc object is the main communication end point in eRPC. Applications use it to create sessions wit...">Rpc</a>'s optaque context, which is passed to request handlers and continuations. </p>
 
 </div>
 </div>

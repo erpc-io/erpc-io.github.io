@@ -80,16 +80,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2935cb090c9f3c8003e4b48519afd5bf"><td class="memItemLeft" align="right" valign="top"><a id="a2935cb090c9f3c8003e4b48519afd5bf"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1MsgBuffer.html#a2935cb090c9f3c8003e4b48519afd5bf">get_req_type</a> () const</td></tr>
-<tr class="memdesc:a2935cb090c9f3c8003e4b48519afd5bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the request type of this message buffer. <br /></td></tr>
-<tr class="separator:a2935cb090c9f3c8003e4b48519afd5bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00bd371367c5e69490ace891bcd8bd54"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1MsgBuffer.html#a00bd371367c5e69490ace891bcd8bd54">get_data_size</a> () const</td></tr>
 <tr class="separator:a00bd371367c5e69490ace891bcd8bd54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p class="">Applications store request and response messages in hugepage-backed buffers called message buffers. These buffers are registered with the NIC, allowing fast zero-copy transmission. </p>
-<p class="">A message buffer is allocated using <a class="el" href="classerpc_1_1Rpc.html#a391b3358861f5e26df6e2dd0cbe42bb6" title="Create a hugepage-backed buffer for storing request or response messages.">Rpc::alloc_msg_buffer</a>. Only its maximum size is specified during allocation. Later, users can resize the message buffer with <a class="el" href="classerpc_1_1Rpc.html#a0c99d68d7db5969e7fa374a63d35fb92" title="Resize a MsgBuffer to fit a request or response.">Rpc::resize_msg_buffer</a> to fit smaller requests or responses. <a class="el" href="classerpc_1_1Rpc.html#ad07c5907fdc38d19c5e4d99089d18b58" title="Free a MsgBuffer created by alloc_msg_buffer()">Rpc::free_msg_buffer</a> frees a message buffer.</p>
+<p class="">A message buffer is allocated using <a class="el" href="classerpc_1_1Rpc.html#a391b3358861f5e26df6e2dd0cbe42bb6" title="Create a hugepage-backed buffer for storing request or response messages. Safe to call from backgroun...">Rpc::alloc_msg_buffer</a>. Only its maximum size is specified during allocation. Later, users can resize the message buffer with <a class="el" href="classerpc_1_1Rpc.html#a0c99d68d7db5969e7fa374a63d35fb92" title="Resize a MsgBuffer to fit a request or response. Safe to call from background threads (TS).">Rpc::resize_msg_buffer</a> to fit smaller requests or responses. <a class="el" href="classerpc_1_1Rpc.html#ad07c5907fdc38d19c5e4d99089d18b58">Rpc::free_msg_buffer</a> frees a message buffer.</p>
 <p class="">A message buffer is invalid if its <a class="el" href="classerpc_1_1MsgBuffer.html#abeb9af6b4b1497e3aaf2d9779a599f5f">buf</a> pointer is null. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a00bd371367c5e69490ace891bcd8bd54"></a>
