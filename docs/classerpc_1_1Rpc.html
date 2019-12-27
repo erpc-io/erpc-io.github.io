@@ -232,7 +232,7 @@ Related Functions</h2></td></tr>
 <tr class="memdesc:a18236cb88db9fa44f0a5a4dffaffd07c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The possible kinds of request handlers. Foreground-mode handlers run in the thread that calls the event loop. Background-mode handlers run in background threads spawned by eRPC. <br /></td></tr>
 <tr class="separator:a18236cb88db9fa44f0a5a4dffaffd07c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9dc4e9a928745c818c129030492602a0"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a9dc4e9a928745c818c129030492602a0">erpc_req_func_t</a>) (ReqHandle *req_handle, void *context)</td></tr>
-<tr class="memdesc:a9dc4e9a928745c818c129030492602a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the request handler function invoked at the server when a request is received. The application owns the request handle (and therefore the request message buffer) until it calls <a class="el" href="classerpc_1_1Rpc.html#ac8932e69d2b10653e70b5cb06785efb1" title="Enqueue a response for transmission at the server. See ReqHandle for details about creating the respo...">Rpc::enqueue_response</a>.  <a href="#a9dc4e9a928745c818c129030492602a0">More...</a><br /></td></tr>
+<tr class="memdesc:a9dc4e9a928745c818c129030492602a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the request handler function invoked at the server on receiving a request.  <a href="#a9dc4e9a928745c818c129030492602a0">More...</a><br /></td></tr>
 <tr class="separator:a9dc4e9a928745c818c129030492602a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a462be99bcda87d2d583a84a6a92565e8"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a462be99bcda87d2d583a84a6a92565e8">erpc_cont_func_t</a>) (void *context, void *tag)</td></tr>
 <tr class="memdesc:a462be99bcda87d2d583a84a6a92565e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the continuation callback invoked at the client. This returns ownership of the request and response message buffers that the application supplied in <a class="el" href="classerpc_1_1Rpc.html#a44c507035ed2be98a21022d8466d6229" title="Enqueue a request for transmission. This always succeeds. eRPC owns msg_buffer until it invokes the c...">Rpc::enqueue_request</a> back to the application.  <a href="#a462be99bcda87d2d583a84a6a92565e8">More...</a><br /></td></tr>
@@ -864,8 +864,9 @@ template&lt;class TTr &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>The type of the request handler function invoked at the server when a request is received. The application owns the request handle (and therefore the request message buffer) until it calls <a class="el" href="classerpc_1_1Rpc.html#ac8932e69d2b10653e70b5cb06785efb1" title="Enqueue a response for transmission at the server. See ReqHandle for details about creating the respo...">Rpc::enqueue_response</a>. </p>
-<p class="">The application need not enqueue the response in the body of the request handler. This is true even if the request handler is foreground-mode.</p>
+<p>The type of the request handler function invoked at the server on receiving a request. </p>
+<p class="">The application need not enqueue the response inside the request handler. It can do so later.</p>
+<p class="">Request buffer ownership: The application owns the request message buffer until it enqueues the response, except in one common case. If zero-copy RX is enabled (i.e., kZeroCopyRx is true) and the request message fits in one packet, the application owns the request message buffer for only the duration of the request handler.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ReqHandle</td><td>A handle to the received request </td></tr>
