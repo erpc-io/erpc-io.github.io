@@ -101,8 +101,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a44c507035ed2be98a21022d8466d6229"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a44c507035ed2be98a21022d8466d6229">enqueue_request</a> (int session_num, uint8_t req_type, <a class="el" href="classerpc_1_1MsgBuffer.html">MsgBuffer</a> *req_msgbuf, <a class="el" href="classerpc_1_1MsgBuffer.html">MsgBuffer</a> *resp_msgbuf, <a class="el" href="classerpc_1_1Rpc.html#a462be99bcda87d2d583a84a6a92565e8">erpc_cont_func_t</a> cont_func, void *tag, size_t cont_etid=kInvalidBgETid)</td></tr>
 <tr class="memdesc:a44c507035ed2be98a21022d8466d6229"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueue a request for transmission. This always succeeds. eRPC owns the request and response msgbufs until it invokes the continuation callback. This function is safe to call from background threads (TS).  <a href="#a44c507035ed2be98a21022d8466d6229">More...</a><br /></td></tr>
 <tr class="separator:a44c507035ed2be98a21022d8466d6229"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8932e69d2b10653e70b5cb06785efb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#ac8932e69d2b10653e70b5cb06785efb1">enqueue_response</a> (ReqHandle *req_handle, <a class="el" href="classerpc_1_1MsgBuffer.html">MsgBuffer</a> *resp_msgbuf)</td></tr>
-<tr class="memdesc:ac8932e69d2b10653e70b5cb06785efb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueue a response for transmission at the server. This must be either the request handle's preallocated response buffer or its dynamic response. See ReqHandle for details about creating the response. On calling this, the application loses ownership of the request and response <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers...">MsgBuffer</a>. This function is safe to call from background threads (TS).  <a href="#ac8932e69d2b10653e70b5cb06785efb1">More...</a><br /></td></tr>
+<tr class="memitem:ac8932e69d2b10653e70b5cb06785efb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#ac8932e69d2b10653e70b5cb06785efb1">enqueue_response</a> (<a class="el" href="classerpc_1_1ReqHandle.html">ReqHandle</a> *req_handle, <a class="el" href="classerpc_1_1MsgBuffer.html">MsgBuffer</a> *resp_msgbuf)</td></tr>
+<tr class="memdesc:ac8932e69d2b10653e70b5cb06785efb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueue a response for transmission at the server. This must be either the request handle's preallocated response buffer or its dynamic response. See <a class="el" href="classerpc_1_1ReqHandle.html" title="Handle object passed by eRPC to the application&#39;s request handler callbacks. ">ReqHandle</a> for details about creating the response. On calling this, the application loses ownership of the request and response <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers...">MsgBuffer</a>. This function is safe to call from background threads (TS).  <a href="#ac8932e69d2b10653e70b5cb06785efb1">More...</a><br /></td></tr>
 <tr class="separator:ac8932e69d2b10653e70b5cb06785efb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c15e4b8c227c6b5109d56558947e484"><td class="memItemLeft" align="right" valign="top"><a id="a7c15e4b8c227c6b5109d56558947e484"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a7c15e4b8c227c6b5109d56558947e484">run_event_loop</a> (size_t timeout_ms)</td></tr>
@@ -228,7 +228,7 @@ Related Functions</h2></td></tr>
 <tr class="memitem:a18236cb88db9fa44f0a5a4dffaffd07c"><td class="memItemLeft" align="right" valign="top"><a id="a18236cb88db9fa44f0a5a4dffaffd07c"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a18236cb88db9fa44f0a5a4dffaffd07c">ReqFuncType</a> : uint8_t <tr class="memdesc:a18236cb88db9fa44f0a5a4dffaffd07c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The possible kinds of request handlers. Foreground-mode handlers run in the thread that calls the event loop. Background-mode handlers run in background threads spawned by eRPC. <br /></td></tr>
 </td></tr>
 <tr class="separator:a18236cb88db9fa44f0a5a4dffaffd07c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dc4e9a928745c818c129030492602a0"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a9dc4e9a928745c818c129030492602a0">erpc_req_func_t</a>) (ReqHandle *req_handle, void *context)</td></tr>
+<tr class="memitem:a9dc4e9a928745c818c129030492602a0"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a9dc4e9a928745c818c129030492602a0">erpc_req_func_t</a>) (<a class="el" href="classerpc_1_1ReqHandle.html">ReqHandle</a> *req_handle, void *context)</td></tr>
 <tr class="memdesc:a9dc4e9a928745c818c129030492602a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the request handler function invoked at the server on receiving a request.  <a href="#a9dc4e9a928745c818c129030492602a0">More...</a><br /></td></tr>
 <tr class="separator:a9dc4e9a928745c818c129030492602a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a462be99bcda87d2d583a84a6a92565e8"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classerpc_1_1Rpc.html#a462be99bcda87d2d583a84a6a92565e8">erpc_cont_func_t</a>) (void *context, void *tag)</td></tr>
@@ -559,7 +559,7 @@ template&lt;class TTr &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classerpc_1_1Rpc.html">erpc::Rpc</a>&lt; TTr &gt;::enqueue_response </td>
           <td>(</td>
-          <td class="paramtype">ReqHandle *&#160;</td>
+          <td class="paramtype"><a class="el" href="classerpc_1_1ReqHandle.html">ReqHandle</a> *&#160;</td>
           <td class="paramname"><em>req_handle</em>, </td>
         </tr>
         <tr>
@@ -576,7 +576,7 @@ template&lt;class TTr &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Enqueue a response for transmission at the server. This must be either the request handle's preallocated response buffer or its dynamic response. See ReqHandle for details about creating the response. On calling this, the application loses ownership of the request and response <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers...">MsgBuffer</a>. This function is safe to call from background threads (TS). </p>
+<p>Enqueue a response for transmission at the server. This must be either the request handle's preallocated response buffer or its dynamic response. See <a class="el" href="classerpc_1_1ReqHandle.html" title="Handle object passed by eRPC to the application&#39;s request handler callbacks. ">ReqHandle</a> for details about creating the response. On calling this, the application loses ownership of the request and response <a class="el" href="classerpc_1_1MsgBuffer.html" title="Applications store request and response messages in hugepage-backed buffers called message buffers...">MsgBuffer</a>. This function is safe to call from background threads (TS). </p>
 <p>This can be called outside the request handler.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -853,7 +853,7 @@ template&lt;class TTr &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* erpc_req_func_t) (ReqHandle *req_handle, void *context)</td>
+          <td class="memname">typedef void(* erpc_req_func_t) (<a class="el" href="classerpc_1_1ReqHandle.html">ReqHandle</a> *req_handle, void *context)</td>
         </tr>
       </table>
   </td>
@@ -868,7 +868,7 @@ template&lt;class TTr &gt; </div>
 <p>Request buffer ownership: The application owns the request message buffer until it enqueues the response, except in one common case. If zero-copy RX is enabled (i.e., kZeroCopyRx is true) and the request message fits in one packet, the application owns the request message buffer for only the duration of the request handler.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ReqHandle</td><td>A handle to the received request </td></tr>
+    <tr><td class="paramname"><a class="el" href="classerpc_1_1ReqHandle.html" title="Handle object passed by eRPC to the application&#39;s request handler callbacks. ">ReqHandle</a></td><td>A handle to the received request </td></tr>
     <tr><td class="paramname">context</td><td>The context that was used while creating the <a class="el" href="classerpc_1_1Rpc.html" title="An Rpc object is the main communication end point in eRPC. Applications use it to create sessions wit...">Rpc</a> object </td></tr>
   </table>
   </dd>

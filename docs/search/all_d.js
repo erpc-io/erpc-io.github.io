@@ -5,6 +5,7 @@ var searchData=
   ['req_5ffunc_5ftype_5f',['req_func_type_',['../classerpc_1_1ReqFunc.html#a8127c25ade8b9ecf3ddf00c23dadb107',1,'erpc::ReqFunc']]],
   ['reqfunc',['ReqFunc',['../classerpc_1_1ReqFunc.html',1,'erpc']]],
   ['reqfunctype',['ReqFuncType',['../classerpc_1_1Rpc.html#a18236cb88db9fa44f0a5a4dffaffd07c',1,'erpc::Rpc']]],
+  ['reqhandle',['ReqHandle',['../classerpc_1_1ReqHandle.html',1,'erpc']]],
   ['reset_5fdpath_5fstats',['reset_dpath_stats',['../classerpc_1_1Rpc.html#ae68f74570aaa40e470c2c2d398a1b826',1,'erpc::Rpc']]],
   ['reset_5fnum_5fre_5ftx',['reset_num_re_tx',['../classerpc_1_1Rpc.html#a393f932251e23faf24ba5c9ccde9202a',1,'erpc::Rpc']]],
   ['resize_5fmsg_5fbuffer',['resize_msg_buffer',['../classerpc_1_1Rpc.html#a0c99d68d7db5969e7fa374a63d35fb92',1,'erpc::Rpc']]],
